@@ -61,6 +61,27 @@
 | Firewall で SSH 許可 | Done | Firewall setting |
 | Tera Term 接続確認 | Done | SSH client connection |
 
+### Oracle Database 19c インストール前準備
+
+| 項目 | Status | Evidence |
+| --- | --- | --- |
+| Oracle Installation Readiness Check | Done | OS requirement check |
+| Memory 確認 | Done | Readiness check |
+| Swap 確認 | Done | Readiness check |
+| Disk 容量確認 | Done | Readiness check |
+| Hostname 確認 | Done | Readiness check |
+| Oracle User 確認 | Done | Readiness check |
+| Kernel Version 確認 | Done | Readiness check |
+| SELinux 確認 | Done | Readiness check |
+| Firewall 確認 | Done | Readiness check |
+| VMware 環境確認 | Done | Readiness check |
+| Oracle Prerequisite Package 確認 | Done | RPM package check |
+| 不足 Package 追加インストール | Done | RPM package install |
+| 必要 Package の `rpm` 確認 | Done | RPM verification |
+| Oracle Directory Layout 作成 | Done | `/u01/app` layout |
+| `ORACLE_HOME` 配置先作成 | Done | `/u01/app/oracle/product/19.0.0/dbhome_1` |
+| Oracle Inventory 用 Directory 管理 | Done | `/u01/app/oraInventory` |
+
 ## Current Environment
 
 | 項目 | 内容 | Status |
@@ -72,23 +93,81 @@
 | Disk | 50GB Thin Provision | Done |
 | Network | NAT | Done |
 
+## 導入済み Oracle Prerequisite Package
+
+| Package | Status |
+| --- | --- |
+| `gcc` | Done |
+| `gcc-c++` | Done |
+| `glibc-devel` | Done |
+| `ksh` | Done |
+| `libaio-devel` | Done |
+| `libstdc++-devel` | Done |
+| `make` | Done |
+| `sysstat` | Done |
+| `unzip` | Done |
+| `elfutils-libelf-devel` | Done |
+
+## Oracle Directory Layout
+
+```text
+/u01
+└── app
+    ├── oracle
+    │   └── product
+    │       └── 19.0.0
+    │           └── dbhome_1
+    └── oraInventory
+```
+
+| Directory | Status | 用途 |
+| --- | --- | --- |
+| `/u01` | Done | Oracle 関連ファイル配置領域 |
+| `/u01/app/oracle` | Done | `ORACLE_BASE` |
+| `/u01/app/oracle/product/19.0.0/dbhome_1` | Done | `ORACLE_HOME` |
+| `/u01/app/oraInventory` | Done | Oracle Inventory |
+
+## Oracle DBA Memo
+
+| 項目 | Status | 備考 |
+| --- | --- | --- |
+| OS Validation | Done | Oracle Installer 実行前確認 |
+| Prerequisite Package | Done | 不足 Package を追加導入 |
+| Directory Layout | Done | Oracle Software 配置先を準備 |
+| Oracle Software Installation | Not Started | OUI 実行前 |
+
+今回の作業では Oracle Software のインストールはまだ実施していません。
+
+## Oracle Silver / Gold 学習ポイント
+
+| 学習項目 | Status | 対応するHands-on |
+| --- | --- | --- |
+| Oracle Prerequisite Package の役割 | Done | RPM Package 確認・導入 |
+| Oracle 公式 Directory Layout | Done | `/u01/app` 構成作成 |
+| `ORACLE_BASE` | Done | `/u01/app/oracle` |
+| `ORACLE_HOME` | Done | `/u01/app/oracle/product/19.0.0/dbhome_1` |
+| Oracle Inventory | Done | `/u01/app/oraInventory` |
+| Oracle Installation Readiness Check | Done | OS 要件確認 |
+
 ## 未検証 / 今後の予定
 
 以下は今後の作業予定であり、現時点では検証済み手順ではありません。
 
 | No. | 項目 | Status | 備考 |
 | --- | --- | --- | --- |
-| 1 | Oracle Preinstall | Not Started | Golden Image から複製後に実施予定 |
-| 2 | Oracle Database 19c Software Install | Not Started | 未検証 |
-| 3 | DBCA | Not Started | 未検証 |
-| 4 | Listener 構築 | Not Started | 未検証 |
-| 5 | Sample Database 作成 | Not Started | 未検証 |
-| 6 | RMAN | Not Started | 未検証 |
-| 7 | Data Pump | Not Started | 未検証 |
-| 8 | Oracle to Oracle Migration | Not Started | 未検証 |
-| 9 | Validation | Not Started | 未検証 |
-| 10 | Hyper-V 環境構築 | Not Started | 未検証 |
-| 11 | Oracle Linux 環境構築 | Not Started | 未検証 |
+| 1 | Oracle Environment Variables | Not Started | 未検証 |
+| 2 | Oracle User Profile 設定 | Not Started | 未検証 |
+| 3 | Oracle Universal Installer (OUI) | Not Started | 未検証 |
+| 4 | `root.sh` | Not Started | 未検証 |
+| 5 | Oracle Software Installation | Not Started | 未検証 |
+| 6 | DBCA | Not Started | 未検証 |
+| 7 | Listener Configuration | Not Started | 未検証 |
+| 8 | RMAN | Not Started | 未検証 |
+| 9 | Data Pump | Not Started | 未検証 |
+| 10 | Oracle to Oracle Migration | Not Started | 未検証 |
+| 11 | Validation | Not Started | 未検証 |
+| 12 | Hyper-V 環境構築 | Not Started | 未検証 |
+| 13 | Oracle Linux 環境構築 | Not Started | 未検証 |
 
 ## Golden Image 管理
 

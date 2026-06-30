@@ -32,29 +32,47 @@
 - [x] Snapshot 取得
 - [x] Golden Image 用 Full Clone 作成
 
-## Phase 2: Oracle Database 19c Build
+## Phase 2: Oracle Database 19c Preinstall Readiness
 
-- [ ] Oracle Preinstall
-- [ ] Oracle Database 19c Software Install
+- [x] Oracle Installation Readiness Check
+- [x] Memory / Swap / Disk 容量確認
+- [x] Hostname / Oracle User / Kernel Version 確認
+- [x] SELinux / Firewall / VMware 環境確認
+- [x] Oracle Prerequisite Package 確認
+- [x] 不足 Package 追加インストール
+- [x] `rpm` コマンドによる Package 導入確認
+- [x] Oracle Directory Layout 作成
+- [x] `ORACLE_BASE` / `ORACLE_HOME` / Oracle Inventory 配置方針整理
+
+## Phase 3: Oracle Database 19c Software Install
+
+- [ ] Oracle Environment Variables
+- [ ] Oracle User Profile 設定
+- [ ] Oracle Universal Installer (OUI)
+- [ ] `root.sh`
+- [ ] Oracle Software Installation
+
+## Phase 4: Database Creation / Network
+
 - [ ] DBCA
-- [ ] Listener 構築
+- [ ] Listener Configuration
 - [ ] Sample Database 作成
 
-## Phase 3: Backup / Recovery
+## Phase 5: Backup / Recovery
 
 - [ ] RMAN 基本操作
 - [ ] Backup 取得
 - [ ] Restore / Recovery 検証
 - [ ] 障害発生時の確認観点整理
 
-## Phase 4: Data Movement
+## Phase 6: Data Movement
 
 - [ ] Data Pump Export
 - [ ] Data Pump Import
 - [ ] 移行前後の確認項目整理
 - [ ] Validation 手順整理
 
-## Phase 5: Oracle to Oracle Migration
+## Phase 7: Oracle to Oracle Migration
 
 - [ ] 移行元 DB 準備
 - [ ] 移行先 DB 準備
@@ -63,13 +81,13 @@
 - [ ] 移行後 Validation
 - [ ] 切り戻し観点整理
 
-## Phase 6: Platform Expansion
+## Phase 8: Platform Expansion
 
 - [ ] Hyper-V 環境構築
 - [ ] Oracle Linux 環境構築
 - [ ] AWS 上の Oracle Linux 検証
 
-## Phase 7: Certification / DBA Learning
+## Phase 9: Certification / DBA Learning
 
 - [ ] Oracle Silver 学習記録
 - [ ] Oracle Gold 学習記録
