@@ -1,77 +1,84 @@
 # Roadmap
 
-このロードマップは、今後Hands-onで検証していく候補を整理するためのものです。
+このドキュメントは、Enterprise Infrastructure Lab の今後の検証計画を整理するためのロードマップです。
 
-ここに記載されている内容は、実施済みの技術記録ではありません。実際に構築・検証した内容のみ、個別ドキュメントとして追加します。
+ここに記載している内容は、今後の予定を含みます。検証済みの作業は [PROGRESS.md](./PROGRESS.md) で管理します。
 
-## Phase 0: Repository Foundation
+## Phase 0: Repository / Lab Foundation
 
-- [x] README作成
-- [x] Repository構成作成
-- [x] Roadmap作成
-- [x] Progress Checklist作成
-- [ ] Markdownテンプレート作成
-- [ ] GitHub運用ルール整理
+- [x] GitHub Repository 作成
+- [x] Enterprise Infrastructure Lab 作成
+- [x] Codex Project 作成
+- [x] README 作成
+- [x] Progress Checklist 作成
+- [x] Roadmap 作成
 
-## Phase 1: Current Environment Inventory
+## Phase 1: RHEL Golden Image
 
-- [ ] 現行環境の構成要素を整理する
-- [ ] VMware ESXi の確認項目を整理する
-- [ ] Windows Server の確認項目を整理する
-- [ ] RHEL の確認項目を整理する
-- [ ] Oracle Database の確認項目を整理する
-- [ ] Application Server / Web Server の確認項目を整理する
+- [x] VMware Workstation Pro インストール
+- [x] VM 保存先変更
+- [x] RHEL 9.2 Minimal インストール
+- [x] `oracle` ユーザー作成
+- [x] `root` パスワード設定
+- [x] Developer for Individuals 登録
+- [x] `subscription-manager` 登録
+- [x] BaseOS / AppStream Repository 有効化
+- [x] `dnf update` 実施
+- [x] `open-vm-tools` インストール
+- [x] `vmtoolsd` 動作確認
+- [x] OpenSSH Server 設定
+- [x] Firewall で SSH 許可
+- [x] Tera Term 接続確認
+- [x] Snapshot 取得
+- [x] Golden Image 用 Full Clone 作成
 
-## Phase 2: Target Environment Lab
+## Phase 2: Oracle Database 19c Build
 
-- [ ] Hyper-V 検証環境を準備する
-- [ ] Windows Server 検証環境を準備する
-- [ ] RHEL 検証環境を準備する
-- [ ] AWS上にOracle Linux検証環境を準備する
-- [ ] 基本的なネットワーク構成を整理する
+- [ ] Oracle Preinstall
+- [ ] Oracle Database 19c Software Install
+- [ ] DBCA
+- [ ] Listener 構築
+- [ ] Sample Database 作成
 
-## Phase 3: Oracle Database Basics
+## Phase 3: Backup / Recovery
 
-- [ ] Oracle Database の基本構成を確認する
-- [ ] インスタンス・データベース・リスナーの関係を確認する
-- [ ] 表領域・データファイル・制御ファイル・REDOログを確認する
-- [ ] 基本的なバックアップ・リカバリ観点を整理する
+- [ ] RMAN 基本操作
+- [ ] Backup 取得
+- [ ] Restore / Recovery 検証
+- [ ] 障害発生時の確認観点整理
 
-## Phase 4: Oracle to Oracle Migration Lab
+## Phase 4: Data Movement
 
-- [ ] 移行方式の候補を整理する
-- [ ] Export / Import 系の検証を行う
-- [ ] Data Pump の検証を行う
-- [ ] RMANを使った移行観点を確認する
-- [ ] 移行前後の確認項目を整理する
-- [ ] 切り戻し観点を整理する
+- [ ] Data Pump Export
+- [ ] Data Pump Import
+- [ ] 移行前後の確認項目整理
+- [ ] Validation 手順整理
 
-## Phase 5: Middleware and Application Connectivity
+## Phase 5: Oracle to Oracle Migration
 
-- [ ] Application Server の接続構成を確認する
-- [ ] Web Server の接続構成を確認する
-- [ ] Oracle Database 接続文字列を整理する
-- [ ] 移行時に影響する設定項目を確認する
+- [ ] 移行元 DB 準備
+- [ ] 移行先 DB 準備
+- [ ] 移行方式検討
+- [ ] 移行作業実施
+- [ ] 移行後 Validation
+- [ ] 切り戻し観点整理
 
-## Phase 6: Troubleshooting and Operations
+## Phase 6: Platform Expansion
 
-- [ ] 障害対応記録のテンプレートを整備する
-- [ ] ログ確認手順を整理する
-- [ ] 性能調査の基本観点を整理する
-- [ ] 変更作業時の確認項目を整理する
+- [ ] Hyper-V 環境構築
+- [ ] Oracle Linux 環境構築
+- [ ] AWS 上の Oracle Linux 検証
 
-## Phase 7: Enterprise Documentation Quality
+## Phase 7: Certification / DBA Learning
 
-- [ ] ドキュメント命名規則を整備する
-- [ ] 構成図の表記ルールを整備する
-- [ ] レビュー観点を整理する
-- [ ] GitHub上での継続的な改善フローを整備する
+- [ ] Oracle Silver 学習記録
+- [ ] Oracle Gold 学習記録
+- [ ] Oracle DBA Hands-on 記録
+- [ ] 学習内容と実機検証内容の対応整理
 
-## Long-Term Themes
+## 注意事項
 
-- Oracle Database migration
-- Virtualization platform migration
-- Hybrid infrastructure design
-- Linux and Windows Server operations
-- Enterprise troubleshooting
-- Infrastructure documentation quality
+- 未検証の手順は、検証済み手順として記載しない
+- インターネット上の一般論だけで資料化しない
+- 不足情報は TODO として扱う
+- 検証後に README / PROGRESS / 個別ドキュメントへ反映する
