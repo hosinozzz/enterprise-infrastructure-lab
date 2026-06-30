@@ -17,19 +17,17 @@
 
 - [x] VMware Workstation Pro インストール
 - [x] VM 保存先変更
-- [x] RHEL 9.2 Minimal インストール
+- [x] RHEL 9.8 Base 構成
 - [x] `oracle` ユーザー作成
 - [x] `root` パスワード設定
 - [x] Developer for Individuals 登録
 - [x] `subscription-manager` 登録
 - [x] BaseOS / AppStream Repository 有効化
 - [x] `dnf update` 実施
-- [x] `open-vm-tools` インストール
-- [x] `vmtoolsd` 動作確認
-- [x] OpenSSH Server 設定
+- [x] VMware Tools 構成
+- [x] OpenSSH 構成
 - [x] Firewall で SSH 許可
 - [x] Tera Term 接続確認
-- [x] Snapshot 取得
 - [x] Golden Image 用 Full Clone 作成
 
 ## Phase 2: Oracle Database 19c Preinstall Readiness
@@ -44,35 +42,44 @@
 - [x] Oracle Directory Layout 作成
 - [x] `ORACLE_BASE` / `ORACLE_HOME` / Oracle Inventory 配置方針整理
 
-## Phase 3: Oracle Database 19c Software Install
+## Phase 3: Oracle Database 19c OS Tuning
 
-- [ ] Oracle Environment Variables
-- [ ] Oracle User Profile 設定
+- [x] Oracle Environment Variables
+- [x] Oracle User Profile 設定
+- [x] Oracle Resource Limits
+- [x] Oracle Kernel Parameters
+- [x] `sysctl --system` による Kernel Parameter 反映
+- [x] SELinux `Permissive` 設定
+- [x] Oracle Installation Baseline Snapshot 取得
+
+## Phase 4: Oracle Database 19c Software Install
+
+- [ ] Oracle Database 19c Software 配置
 - [ ] Oracle Universal Installer (OUI)
 - [ ] `root.sh`
 - [ ] Oracle Software Installation
 
-## Phase 4: Database Creation / Network
+## Phase 5: Database Creation / Network
 
 - [ ] DBCA
 - [ ] Listener Configuration
 - [ ] Sample Database 作成
 
-## Phase 5: Backup / Recovery
+## Phase 6: Backup / Recovery
 
 - [ ] RMAN 基本操作
 - [ ] Backup 取得
 - [ ] Restore / Recovery 検証
 - [ ] 障害発生時の確認観点整理
 
-## Phase 6: Data Movement
+## Phase 7: Data Movement
 
 - [ ] Data Pump Export
 - [ ] Data Pump Import
 - [ ] 移行前後の確認項目整理
 - [ ] Validation 手順整理
 
-## Phase 7: Oracle to Oracle Migration
+## Phase 8: Oracle to Oracle Migration
 
 - [ ] 移行元 DB 準備
 - [ ] 移行先 DB 準備
@@ -81,13 +88,13 @@
 - [ ] 移行後 Validation
 - [ ] 切り戻し観点整理
 
-## Phase 8: Platform Expansion
+## Phase 9: Platform Expansion
 
 - [ ] Hyper-V 環境構築
 - [ ] Oracle Linux 環境構築
 - [ ] AWS 上の Oracle Linux 検証
 
-## Phase 9: Certification / DBA Learning
+## Phase 10: Certification / DBA Learning
 
 - [ ] Oracle Silver 学習記録
 - [ ] Oracle Gold 学習記録

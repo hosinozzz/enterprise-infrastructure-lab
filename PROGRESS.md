@@ -30,16 +30,20 @@
 | --- | --- | --- |
 | VMware Workstation Pro インストール | Done | Local environment |
 | VM 保存先変更 | Done | Local environment |
-| Snapshot 取得 | Done | VMware Snapshot |
 | Golden Image 用 Full Clone 作成 | Done | VMware Full Clone |
+| Oracle Installation Baseline Snapshot 取得 | Done | VMware Snapshot |
 
-### RHEL
+### RHEL / 運用環境
 
 | 項目 | Status | Evidence |
 | --- | --- | --- |
-| RHEL 9.2 Minimal インストール | Done | RHEL VM |
+| RHEL 9.8 Base 構成 | Done | RHEL VM |
+| VMware Tools 構成 | Done | VMware guest tools |
+| OpenSSH 構成 | Done | SSH service |
 | `oracle` ユーザー作成 | Done | OS user |
 | `root` パスワード設定 | Done | OS setting |
+| Firewall で SSH 許可 | Done | Firewall setting |
+| Tera Term 接続確認 | Done | SSH client connection |
 
 ### Red Hat
 
@@ -50,16 +54,6 @@
 | BaseOS Repository 有効化 | Done | RHEL repository |
 | AppStream Repository 有効化 | Done | RHEL repository |
 | `dnf update` 実施 | Done | Package update |
-
-### 運用環境
-
-| 項目 | Status | Evidence |
-| --- | --- | --- |
-| `open-vm-tools` インストール | Done | Installed package |
-| `vmtoolsd` 動作確認 | Done | Running service/process |
-| OpenSSH Server 設定 | Done | SSH service |
-| Firewall で SSH 許可 | Done | Firewall setting |
-| Tera Term 接続確認 | Done | SSH client connection |
 
 ### Oracle Database 19c インストール前準備
 
@@ -82,12 +76,38 @@
 | `ORACLE_HOME` 配置先作成 | Done | `/u01/app/oracle/product/19.0.0/dbhome_1` |
 | Oracle Inventory 用 Directory 管理 | Done | `/u01/app/oraInventory` |
 
+### Oracle Database 19c インストール直前OSチューニング
+
+| 項目 | Status | Evidence |
+| --- | --- | --- |
+| Oracle Environment Variables 設定 | Done | `oracle` user `.bash_profile` |
+| `ORACLE_BASE` 設定 | Done | `.bash_profile` |
+| `ORACLE_HOME` 設定 | Done | `.bash_profile` |
+| `ORACLE_SID` 設定 | Done | `.bash_profile` |
+| `PATH` 設定 | Done | `.bash_profile` |
+| Oracle Resource Limits 設定 | Done | `/etc/security/limits.d/oracle.conf` |
+| `nofile` 設定 | Done | `oracle.conf` |
+| `nproc` 設定 | Done | `oracle.conf` |
+| `stack` 設定 | Done | `oracle.conf` |
+| Oracle Kernel Parameters 設定 | Done | `/etc/sysctl.d/99-oracle.conf` |
+| `fs.aio-max-nr` 設定 | Done | `99-oracle.conf` |
+| `kernel.sem` 設定 | Done | `99-oracle.conf` |
+| `net.ipv4.ip_local_port_range` 設定 | Done | `99-oracle.conf` |
+| `net.core.rmem_default` 設定 | Done | `99-oracle.conf` |
+| `net.core.rmem_max` 設定 | Done | `99-oracle.conf` |
+| `net.core.wmem_default` 設定 | Done | `99-oracle.conf` |
+| `net.core.wmem_max` 設定 | Done | `99-oracle.conf` |
+| `sysctl --system` 実行 | Done | Kernel Parameter applied |
+| Kernel Parameter 適用確認 | Done | sysctl verification |
+| SELinux `Permissive` 変更 | Done | Lab configuration |
+| Oracle Installation Baseline Snapshot 取得 | Done | VMware Snapshot |
+
 ## Current Environment
 
 | 項目 | 内容 | Status |
 | --- | --- | --- |
 | 仮想化基盤 | VMware Workstation Pro | Done |
-| OS | RHEL 9.2 Minimal | Done |
+| OS | RHEL 9.8 Base | Done |
 | CPU | 1 Socket / 4 Core | Done |
 | Memory | 8GB | Done |
 | Disk | 50GB Thin Provision | Done |
@@ -127,6 +147,48 @@
 | `/u01/app/oracle/product/19.0.0/dbhome_1` | Done | `ORACLE_HOME` |
 | `/u01/app/oraInventory` | Done | Oracle Inventory |
 
+## Oracle OS Tuning
+
+### Oracle Environment Variables
+
+| 設定項目 | Status | 管理箇所 |
+| --- | --- | --- |
+| `ORACLE_BASE` | Done | `oracle` user `.bash_profile` |
+| `ORACLE_HOME` | Done | `oracle` user `.bash_profile` |
+| `ORACLE_SID` | Done | `oracle` user `.bash_profile` |
+| `PATH` | Done | `oracle` user `.bash_profile` |
+
+### Oracle Resource Limits
+
+| 設定項目 | Status | 管理ファイル |
+| --- | --- | --- |
+| `nofile` | Done | `/etc/security/limits.d/oracle.conf` |
+| `nproc` | Done | `/etc/security/limits.d/oracle.conf` |
+| `stack` | Done | `/etc/security/limits.d/oracle.conf` |
+
+### Oracle Kernel Parameters
+
+| 設定項目 | Status | 管理ファイル |
+| --- | --- | --- |
+| `fs.aio-max-nr` | Done | `/etc/sysctl.d/99-oracle.conf` |
+| `kernel.sem` | Done | `/etc/sysctl.d/99-oracle.conf` |
+| `net.ipv4.ip_local_port_range` | Done | `/etc/sysctl.d/99-oracle.conf` |
+| `net.core.rmem_default` | Done | `/etc/sysctl.d/99-oracle.conf` |
+| `net.core.rmem_max` | Done | `/etc/sysctl.d/99-oracle.conf` |
+| `net.core.wmem_default` | Done | `/etc/sysctl.d/99-oracle.conf` |
+| `net.core.wmem_max` | Done | `/etc/sysctl.d/99-oracle.conf` |
+
+| 反映・確認 | Status | 備考 |
+| --- | --- | --- |
+| `sysctl --system` | Done | Kernel Parameter 反映 |
+| 適用確認 | Done | 正常適用を確認 |
+
+### SELinux
+
+| 項目 | Status | 備考 |
+| --- | --- | --- |
+| SELinux `Permissive` 変更 | Done | Oracle Database 構築用 Lab 環境として設定 |
+
 ## Oracle DBA Memo
 
 | 項目 | Status | 備考 |
@@ -134,7 +196,14 @@
 | OS Validation | Done | Oracle Installer 実行前確認 |
 | Prerequisite Package | Done | 不足 Package を追加導入 |
 | Directory Layout | Done | Oracle Software 配置先を準備 |
+| Oracle Environment Variables | Done | `oracle` user profile |
+| Oracle Resource Limits | Done | Oracle 専用 limits 設定 |
+| Oracle Kernel Parameters | Done | Oracle 向け sysctl 設定 |
+| SELinux Configuration | Done | Lab 用途として `Permissive` |
+| Oracle Installation Baseline Snapshot | Done | Software Installation 直前の復旧点 |
 | Oracle Software Installation | Not Started | OUI 実行前 |
+
+Oracle Linux では `oracle-database-preinstall-19c` パッケージにより自動設定される内容を、今回は RHEL 環境で一つずつ手動構成しました。
 
 今回の作業では Oracle Software のインストールはまだ実施していません。
 
@@ -148,34 +217,56 @@
 | `ORACLE_HOME` | Done | `/u01/app/oracle/product/19.0.0/dbhome_1` |
 | Oracle Inventory | Done | `/u01/app/oraInventory` |
 | Oracle Installation Readiness Check | Done | OS 要件確認 |
+| Oracle Environment Variables | Done | `.bash_profile` 設定 |
+| Oracle Resource Limits | Done | `/etc/security/limits.d/oracle.conf` |
+| Oracle Kernel Parameters | Done | `/etc/sysctl.d/99-oracle.conf` |
+| SELinux と Lab 構成判断 | Done | `Permissive` 設定 |
+| Oracle Installation Baseline | Done | VMware Snapshot 取得 |
 
-## 未検証 / 今後の予定
+## 現在の進捗
+
+### 完了
+
+| 項目 | Status |
+| --- | --- |
+| RHEL 9.8 Base | Done |
+| VMware Tools | Done |
+| OpenSSH | Done |
+| Oracle User | Done |
+| Oracle Prerequisite Package | Done |
+| Oracle Directory Layout | Done |
+| Oracle Environment Variables | Done |
+| Oracle Resource Limits | Done |
+| Oracle Kernel Parameters | Done |
+| SELinux Configuration | Done |
+| Oracle Installation Baseline Snapshot | Done |
+
+### 未検証 / 次回予定
 
 以下は今後の作業予定であり、現時点では検証済み手順ではありません。
 
 | No. | 項目 | Status | 備考 |
 | --- | --- | --- | --- |
-| 1 | Oracle Environment Variables | Not Started | 未検証 |
-| 2 | Oracle User Profile 設定 | Not Started | 未検証 |
-| 3 | Oracle Universal Installer (OUI) | Not Started | 未検証 |
-| 4 | `root.sh` | Not Started | 未検証 |
-| 5 | Oracle Software Installation | Not Started | 未検証 |
-| 6 | DBCA | Not Started | 未検証 |
-| 7 | Listener Configuration | Not Started | 未検証 |
-| 8 | RMAN | Not Started | 未検証 |
-| 9 | Data Pump | Not Started | 未検証 |
-| 10 | Oracle to Oracle Migration | Not Started | 未検証 |
-| 11 | Validation | Not Started | 未検証 |
-| 12 | Hyper-V 環境構築 | Not Started | 未検証 |
-| 13 | Oracle Linux 環境構築 | Not Started | 未検証 |
+| 1 | Oracle Database 19c Software 配置 | Not Started | 未検証 |
+| 2 | Oracle Universal Installer (OUI) | Not Started | 未検証 |
+| 3 | `root.sh` | Not Started | 未検証 |
+| 4 | Oracle Software Installation | Not Started | 未検証 |
+| 5 | DBCA | Not Started | 未検証 |
+| 6 | Listener Configuration | Not Started | 未検証 |
+| 7 | RMAN | Not Started | 未検証 |
+| 8 | Data Pump | Not Started | 未検証 |
+| 9 | Oracle to Oracle Migration | Not Started | 未検証 |
+| 10 | Validation | Not Started | 未検証 |
+| 11 | Hyper-V 環境構築 | Not Started | 未検証 |
+| 12 | Oracle Linux 環境構築 | Not Started | 未検証 |
 
-## Golden Image 管理
+## Golden Image / Snapshot 管理
 
 | 項目 | Status | 用途 |
 | --- | --- | --- |
-| Oracle インストール前 RHEL 9 環境の保存 | Done | Oracle 構築用 VM の複製元 |
-| Snapshot 取得 | Done | Oracle 構築時のロールバック |
-| Full Clone 作成 | Done | Golden Image として長期利用 |
+| Oracle インストール前 RHEL 環境の保存 | Done | Oracle 構築用 VM の複製元 |
+| Golden Image 用 Full Clone 作成 | Done | 長期利用する基準 VM |
+| Oracle Installation Baseline Snapshot 取得 | Done | Oracle Software Installation 直前のロールバックポイント |
 
 ## ドキュメント完了条件
 
