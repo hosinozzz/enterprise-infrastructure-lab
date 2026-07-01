@@ -52,34 +52,46 @@
 - [x] SELinux `Permissive` 設定
 - [x] Oracle Installation Baseline Snapshot 取得
 
-## Phase 4: Oracle Database 19c Software Install
+## Phase 4: Oracle Database 19c Software Staging
 
-- [ ] Oracle Database 19c Software 配置
+- [x] Oracle Database 19c Software Download
+- [x] `/u01/software` 作成
+- [x] Oracle Software Staging
+- [x] Oracle Home 展開
+- [x] Oracle Home 構成確認
+- [x] Oracle Home サイズ確認
+- [x] Server with GUI 追加導入
+- [x] `graphical.target` 設定
+- [x] GNOME Desktop ログイン確認
+- [x] Oracle Universal Installer 実行準備
+
+## Phase 5: Oracle Database 19c Software Install
+
 - [ ] Oracle Universal Installer (OUI)
-- [ ] `root.sh`
 - [ ] Oracle Software Installation
+- [ ] `root.sh`
 
-## Phase 5: Database Creation / Network
+## Phase 6: Database Creation / Network
 
 - [ ] DBCA
 - [ ] Listener Configuration
 - [ ] Sample Database 作成
 
-## Phase 6: Backup / Recovery
+## Phase 7: Backup / Recovery
 
 - [ ] RMAN 基本操作
 - [ ] Backup 取得
 - [ ] Restore / Recovery 検証
 - [ ] 障害発生時の確認観点整理
 
-## Phase 7: Data Movement
+## Phase 8: Data Movement
 
 - [ ] Data Pump Export
 - [ ] Data Pump Import
 - [ ] 移行前後の確認項目整理
 - [ ] Validation 手順整理
 
-## Phase 8: Oracle to Oracle Migration
+## Phase 9: Oracle to Oracle Migration
 
 - [ ] 移行元 DB 準備
 - [ ] 移行先 DB 準備
@@ -88,13 +100,13 @@
 - [ ] 移行後 Validation
 - [ ] 切り戻し観点整理
 
-## Phase 9: Platform Expansion
+## Phase 10: Platform Expansion
 
 - [ ] Hyper-V 環境構築
 - [ ] Oracle Linux 環境構築
 - [ ] AWS 上の Oracle Linux 検証
 
-## Phase 10: Certification / DBA Learning
+## Phase 11: Certification / DBA Learning
 
 - [ ] Oracle Silver 学習記録
 - [ ] Oracle Gold 学習記録

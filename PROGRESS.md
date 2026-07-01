@@ -44,6 +44,9 @@
 | `root` パスワード設定 | Done | OS setting |
 | Firewall で SSH 許可 | Done | Firewall setting |
 | Tera Term 接続確認 | Done | SSH client connection |
+| Server with GUI 追加導入 | Done | GUI package group |
+| `graphical.target` 設定 | Done | systemd default target |
+| GNOME Desktop ログイン確認 | Done | GUI login |
 
 ### Red Hat
 
@@ -102,6 +105,25 @@
 | SELinux `Permissive` 変更 | Done | Lab configuration |
 | Oracle Installation Baseline Snapshot 取得 | Done | VMware Snapshot |
 
+### Oracle Database 19c Software配置
+
+| 項目 | Status | Evidence |
+| --- | --- | --- |
+| Oracle Software Download | Done | `LINUX.X64_193000_db_home.zip` |
+| Oracle Software Staging Directory 作成 | Done | `/u01/software` |
+| Oracle Software Staging | Done | `/u01/software` |
+| Oracle Home 展開 | Done | `/u01/app/oracle/product/19.0.0/dbhome_1` |
+| `runInstaller` 確認 | Done | Oracle Home component |
+| `root.sh` 確認 | Done | Oracle Home component |
+| `OPatch` 確認 | Done | Oracle Home component |
+| `network` Directory 確認 | Done | Oracle Home component |
+| `bin` Directory 確認 | Done | Oracle Home component |
+| Oracle Home サイズ確認 | Done | 約 6.5GB |
+| Server with GUI 追加導入 | Done | RHEL GUI environment |
+| `graphical.target` 設定 | Done | systemd default target |
+| GNOME Desktop ログイン確認 | Done | GUI login |
+| OUI 実行準備 | Done | GUI environment ready |
+
 ## Current Environment
 
 | 項目 | 内容 | Status |
@@ -112,6 +134,7 @@
 | Memory | 8GB | Done |
 | Disk | 50GB Thin Provision | Done |
 | Network | NAT | Done |
+| GUI | GNOME Desktop | Done |
 
 ## 導入済み Oracle Prerequisite Package
 
@@ -132,6 +155,7 @@
 
 ```text
 /u01
+├── software
 └── app
     ├── oracle
     │   └── product
@@ -143,51 +167,36 @@
 | Directory | Status | 用途 |
 | --- | --- | --- |
 | `/u01` | Done | Oracle 関連ファイル配置領域 |
+| `/u01/software` | Done | Oracle Software 保管領域 |
 | `/u01/app/oracle` | Done | `ORACLE_BASE` |
 | `/u01/app/oracle/product/19.0.0/dbhome_1` | Done | `ORACLE_HOME` |
 | `/u01/app/oraInventory` | Done | Oracle Inventory |
 
-## Oracle OS Tuning
+## Oracle Software / Oracle Home
 
-### Oracle Environment Variables
-
-| 設定項目 | Status | 管理箇所 |
+| 項目 | 内容 | Status |
 | --- | --- | --- |
-| `ORACLE_BASE` | Done | `oracle` user `.bash_profile` |
-| `ORACLE_HOME` | Done | `oracle` user `.bash_profile` |
-| `ORACLE_SID` | Done | `oracle` user `.bash_profile` |
-| `PATH` | Done | `oracle` user `.bash_profile` |
+| Software Archive | `LINUX.X64_193000_db_home.zip` | Done |
+| Software Staging | `/u01/software` | Done |
+| Oracle Home | `/u01/app/oracle/product/19.0.0/dbhome_1` | Done |
+| Oracle Home Size | 約 6.5GB | Done |
 
-### Oracle Resource Limits
+| Oracle Home 構成要素 | Status |
+| --- | --- |
+| `runInstaller` | Done |
+| `root.sh` | Done |
+| `OPatch` | Done |
+| `network` | Done |
+| `bin` | Done |
 
-| 設定項目 | Status | 管理ファイル |
-| --- | --- | --- |
-| `nofile` | Done | `/etc/security/limits.d/oracle.conf` |
-| `nproc` | Done | `/etc/security/limits.d/oracle.conf` |
-| `stack` | Done | `/etc/security/limits.d/oracle.conf` |
-
-### Oracle Kernel Parameters
-
-| 設定項目 | Status | 管理ファイル |
-| --- | --- | --- |
-| `fs.aio-max-nr` | Done | `/etc/sysctl.d/99-oracle.conf` |
-| `kernel.sem` | Done | `/etc/sysctl.d/99-oracle.conf` |
-| `net.ipv4.ip_local_port_range` | Done | `/etc/sysctl.d/99-oracle.conf` |
-| `net.core.rmem_default` | Done | `/etc/sysctl.d/99-oracle.conf` |
-| `net.core.rmem_max` | Done | `/etc/sysctl.d/99-oracle.conf` |
-| `net.core.wmem_default` | Done | `/etc/sysctl.d/99-oracle.conf` |
-| `net.core.wmem_max` | Done | `/etc/sysctl.d/99-oracle.conf` |
-
-| 反映・確認 | Status | 備考 |
-| --- | --- | --- |
-| `sysctl --system` | Done | Kernel Parameter 反映 |
-| 適用確認 | Done | 正常適用を確認 |
-
-### SELinux
+## GUI Environment
 
 | 項目 | Status | 備考 |
 | --- | --- | --- |
-| SELinux `Permissive` 変更 | Done | Oracle Database 構築用 Lab 環境として設定 |
+| Server with GUI 追加導入 | Done | RHEL 9 Minimal へ追加 |
+| `graphical.target` 設定 | Done | systemd default target |
+| GNOME Desktop ログイン | Done | GUI login confirmed |
+| OUI 実行準備 | Done | Oracle Universal Installer 実行可能状態 |
 
 ## Oracle DBA Memo
 
@@ -201,11 +210,15 @@
 | Oracle Kernel Parameters | Done | Oracle 向け sysctl 設定 |
 | SELinux Configuration | Done | Lab 用途として `Permissive` |
 | Oracle Installation Baseline Snapshot | Done | Software Installation 直前の復旧点 |
+| Oracle Software Download | Done | 19c Software 取得 |
+| Oracle Software Staging | Done | `/u01/software` |
+| Oracle Home 展開 | Done | `ORACLE_HOME` |
+| GUI Environment | Done | OUI 実行準備 |
 | Oracle Software Installation | Not Started | OUI 実行前 |
 
-Oracle Linux では `oracle-database-preinstall-19c` パッケージにより自動設定される内容を、今回は RHEL 環境で一つずつ手動構成しました。
+Oracle Database 19c では、Software を事前に `ORACLE_HOME` へ展開してから `runInstaller` を実行する方式です。
 
-今回の作業では Oracle Software のインストールはまだ実施していません。
+今回の作業では Oracle Home の構成および役割を確認し、Oracle Universal Installer 実行前の状態まで構築を完了しました。
 
 ## Oracle Silver / Gold 学習ポイント
 
@@ -222,6 +235,9 @@ Oracle Linux では `oracle-database-preinstall-19c` パッケージにより自
 | Oracle Kernel Parameters | Done | `/etc/sysctl.d/99-oracle.conf` |
 | SELinux と Lab 構成判断 | Done | `Permissive` 設定 |
 | Oracle Installation Baseline | Done | VMware Snapshot 取得 |
+| Oracle Software Staging | Done | `/u01/software` |
+| Oracle Home 構成確認 | Done | `runInstaller`, `root.sh`, `OPatch`, `network`, `bin` |
+| OUI 実行前GUI環境 | Done | Server with GUI / GNOME Desktop |
 
 ## 現在の進捗
 
@@ -240,6 +256,11 @@ Oracle Linux では `oracle-database-preinstall-19c` パッケージにより自
 | Oracle Kernel Parameters | Done |
 | SELinux Configuration | Done |
 | Oracle Installation Baseline Snapshot | Done |
+| Oracle Software Download | Done |
+| Oracle Software Staging | Done |
+| Oracle Home 展開 | Done |
+| GUI Environment 構築 | Done |
+| Oracle Universal Installer 実行準備完了 | Done |
 
 ### 未検証 / 次回予定
 
@@ -247,18 +268,17 @@ Oracle Linux では `oracle-database-preinstall-19c` パッケージにより自
 
 | No. | 項目 | Status | 備考 |
 | --- | --- | --- | --- |
-| 1 | Oracle Database 19c Software 配置 | Not Started | 未検証 |
-| 2 | Oracle Universal Installer (OUI) | Not Started | 未検証 |
+| 1 | Oracle Universal Installer (OUI) | Not Started | 未検証 |
+| 2 | Oracle Software Installation | Not Started | 未検証 |
 | 3 | `root.sh` | Not Started | 未検証 |
-| 4 | Oracle Software Installation | Not Started | 未検証 |
-| 5 | DBCA | Not Started | 未検証 |
-| 6 | Listener Configuration | Not Started | 未検証 |
-| 7 | RMAN | Not Started | 未検証 |
-| 8 | Data Pump | Not Started | 未検証 |
-| 9 | Oracle to Oracle Migration | Not Started | 未検証 |
-| 10 | Validation | Not Started | 未検証 |
-| 11 | Hyper-V 環境構築 | Not Started | 未検証 |
-| 12 | Oracle Linux 環境構築 | Not Started | 未検証 |
+| 4 | DBCA | Not Started | 未検証 |
+| 5 | Listener Configuration | Not Started | 未検証 |
+| 6 | RMAN | Not Started | 未検証 |
+| 7 | Data Pump | Not Started | 未検証 |
+| 8 | Oracle to Oracle Migration | Not Started | 未検証 |
+| 9 | Validation | Not Started | 未検証 |
+| 10 | Hyper-V 環境構築 | Not Started | 未検証 |
+| 11 | Oracle Linux 環境構築 | Not Started | 未検証 |
 
 ## Golden Image / Snapshot 管理
 
