@@ -1,0 +1,51 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# Logs / temporary files
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+cache/
+.cache/
+
+# Archives / installation media
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.iso
+
+# Oracle generated files / logs
+oraInventory/
+cfgtoollogs/
+install/
+*.dmp
+*.trc
+*.trm
+*.aud
+
+# Oracle software archives
+LINUX.X64_*.zip
+
+# VMware files
+*.vmdk
+*.vmem
+*.vmsn
+*.vmss
+*.nvram
+*.lck
+*.vmx~
+*.vmxf
+
+# Large local artifacts
+software/
+downloads/
+media/
