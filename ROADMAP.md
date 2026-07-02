@@ -17,53 +17,53 @@
 
 - [x] VMware Workstation Pro インストール
 - [x] VM 保存先変更
-- [x] RHEL 9.8 Base 構成
+- [x] RHEL 8.10 Base 構成
 - [x] `oracle` ユーザー作成
 - [x] `root` パスワード設定
 - [x] Developer for Individuals 登録
 - [x] `subscription-manager` 登録
 - [x] BaseOS / AppStream Repository 有効化
 - [x] `dnf update` 実施
-- [x] VMware Tools 構成
-- [x] OpenSSH 構成
+- [ ] VMware Tools
+- [ ] OpenSSH
 - [x] Firewall で SSH 許可
 - [x] Tera Term 接続確認
-- [x] Golden Image 用 Full Clone 作成
+- [ ] Golden Image 用 Full Clone 作成
 
 ## Phase 2: Oracle Database 19c Preinstall Readiness
 
-- [x] Oracle Installation Readiness Check
-- [x] Memory / Swap / Disk 容量確認
-- [x] Hostname / Oracle User / Kernel Version 確認
-- [x] SELinux / Firewall / VMware 環境確認
-- [x] Oracle Prerequisite Package 確認
-- [x] 不足 Package 追加インストール
-- [x] `rpm` コマンドによる Package 導入確認
-- [x] Oracle Directory Layout 作成
-- [x] `ORACLE_BASE` / `ORACLE_HOME` / Oracle Inventory 配置方針整理
+- [ ] Oracle Installation Readiness Check
+- [ ] Memory / Swap / Disk 容量確認
+- [ ] Hostname / Oracle User / Kernel Version 確認
+- [ ] SELinux / Firewall / VMware 環境確認
+- [ ] Oracle Prerequisite Package 確認
+- [ ] 不足 Package 追加インストール
+- [ ] `rpm` コマンドによる Package 導入確認
+- [ ] Oracle Directory Layout 作成
+- [ ] `ORACLE_BASE` / `ORACLE_HOME` / Oracle Inventory 配置方針整理
 
 ## Phase 3: Oracle Database 19c OS Tuning
 
-- [x] Oracle Environment Variables
-- [x] Oracle User Profile 設定
-- [x] Oracle Resource Limits
-- [x] Oracle Kernel Parameters
-- [x] `sysctl --system` による Kernel Parameter 反映
-- [x] SELinux `Permissive` 設定
-- [x] Oracle Installation Baseline Snapshot 取得
+- [ ] Oracle Environment Variables
+- [ ] Oracle User Profile 設定
+- [ ] Oracle Resource Limits
+- [ ] Oracle Kernel Parameters
+- [ ] `sysctl --system` による Kernel Parameter 反映
+- [ ] SELinux `Permissive` 設定
+- [ ] Oracle Installation Baseline Snapshot 取得
 
 ## Phase 4: Oracle Database 19c Software Staging
 
-- [x] Oracle Database 19c Software Download
-- [x] `/u01/software` 作成
-- [x] Oracle Software Staging
-- [x] Oracle Home 展開
-- [x] Oracle Home 構成確認
-- [x] Oracle Home サイズ確認
-- [x] Server with GUI 追加導入
-- [x] `graphical.target` 設定
-- [x] GNOME Desktop ログイン確認
-- [x] Oracle Universal Installer 実行準備
+- [ ] Oracle Database 19c Software Download
+- [ ] `/u01/software` 作成
+- [ ] Oracle Software Staging
+- [ ] Oracle Home 展開
+- [ ] Oracle Home 構成確認
+- [ ] Oracle Home サイズ確認
+- [ ] Server with GUI 追加導入
+- [ ] `graphical.target` 設定
+- [ ] GNOME Desktop ログイン確認
+- [ ] Oracle Universal Installer 実行準備
 
 ## Phase 5: Oracle Database 19c Software Install
 
