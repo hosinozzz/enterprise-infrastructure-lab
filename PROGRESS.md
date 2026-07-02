@@ -37,7 +37,7 @@
 
 | 項目 | Status | Evidence |
 | --- | --- | --- |
-| RHEL 9.8 Base 構成 | Done | RHEL VM |
+| RHEL 8.10 Base 構成 | Done | RHEL VM |
 | VMware Tools 構成 | Done | VMware guest tools |
 | OpenSSH 構成 | Done | SSH service |
 | `oracle` ユーザー作成 | Done | OS user |
@@ -78,6 +78,14 @@
 | Oracle Directory Layout 作成 | Done | `/u01/app` layout |
 | `ORACLE_HOME` 配置先作成 | Done | `/u01/app/oracle/product/19.0.0/dbhome_1` |
 | Oracle Inventory 用 Directory 管理 | Done | `/u01/app/oraInventory` |
+
+## 2026-07-02
+
+### Completed
+
+- Installed RHEL 8.10
+- Configured Oracle 19c preinstallation environment
+- Created VMware Golden Image before Oracle software installation
 
 ### Oracle Database 19c インストール直前OSチューニング
 
@@ -129,7 +137,7 @@
 | 項目 | 内容 | Status |
 | --- | --- | --- |
 | 仮想化基盤 | VMware Workstation Pro | Done |
-| OS | RHEL 9.8 Base | Done |
+| OS | RHEL 8.10 Base | Done |
 | CPU | 1 Socket / 4 Core | Done |
 | Memory | 8GB | Done |
 | Disk | 50GB Thin Provision | Done |
@@ -193,7 +201,7 @@
 
 | 項目 | Status | 備考 |
 | --- | --- | --- |
-| Server with GUI 追加導入 | Done | RHEL 9 Minimal へ追加 |
+| Server with GUI 追加導入 | Done | RHEL 8.10 Minimal へ追加 |
 | `graphical.target` 設定 | Done | systemd default target |
 | GNOME Desktop ログイン | Done | GUI login confirmed |
 | OUI 実行準備 | Done | Oracle Universal Installer 実行可能状態 |
@@ -245,7 +253,7 @@ Oracle Database 19c では、Software を事前に `ORACLE_HOME` へ展開して
 
 | 項目 | Status |
 | --- | --- |
-| RHEL 9.8 Base | Done |
+| RHEL 8.10 Base | Done |
 | VMware Tools | Done |
 | OpenSSH | Done |
 | Oracle User | Done |
